@@ -5,6 +5,8 @@ import Ticker from 'lib/ticker'
 import * as styles from './styles'
 import RGBAMaterial from '../rgba-material'
 
+const RENDER_SIZE = 1024
+
 export default class TextureCombine extends Component {
     init() {
         this.onUpdate = this.onUpdate.bind(this)
@@ -37,7 +39,6 @@ export default class TextureCombine extends Component {
     }
 
     onRender() {
-        this.classList.add('TextureCombine')
         this.initRenderer()
 
         window.addEventListener('drop', this.preventDefault)
@@ -50,18 +51,14 @@ export default class TextureCombine extends Component {
         this.start()
     }
 
-    onClick(event) {
-        console.log('onClick', event)
-    }
-
     initRenderer() {
         this.renderer = new Renderer({
             canvas: this.refs.canvas,
             alpha: true,
             dpr: 1,
             preserveDrawingBuffer: true,
-            width: 1024,
-            height: 1024,
+            width: RENDER_SIZE,
+            height: RENDER_SIZE,
         })
         const gl = this.renderer.gl
         const geometry = new Geometry(gl, {
@@ -77,14 +74,12 @@ export default class TextureCombine extends Component {
     }
 
     onDragOver(event) {
-        console.log('onDragOver', event);
         event.preventDefault()
         if (this.isBusy) return
         event.target.classList.add('is-drop-hover')
     }
 
     onDrop(event) {
-        console.log('onDrop', event);
         event.preventDefault()
         if (this.isBusy) return
 
@@ -97,31 +92,33 @@ export default class TextureCombine extends Component {
     }
 
     onDragLeave(event) {
-        console.log('onDragLeave', event);
         event.preventDefault()
         event.target.classList.remove('is-drop-hover')
     }
 
-    onFileLoaded(event) {
+    async onFileLoaded(event) {
         let url = event.currentTarget.result
-        this.currentLayer.innerHTML = `<img src="${url}" />`
-        this.updateResult()
-        this.isBusy = false
-        this.currentLayer = null
+
+
+        let canvas = document.createElement('canvas')
+        canvas.width = RENDER_SIZE
+        canvas.height = RENDER_SIZE
+        let context = canvas.getContext('2d')
+        let img = new Image()
+        img.src = url
+        img.onload = () => {
+            context.drawImage(img, 0, 0, RENDER_SIZE, RENDER_SIZE)
+            canvas.complete = true
+            this.currentLayer.innerHTML = `<img src="${url}" />`
+            this.updateResult(canvas)
+            this.isBusy = false
+            this.currentLayer = null
+        }
     }
 
-    updateResult() {
+    updateResult(canvas) {
         let channel = this.currentLayer.getAttribute('data-channel')
-        let img = this.currentLayer.firstChild
-        if (img.complete) {
-            this.program.setChannel(channel, img)
-        } else {
-            img.onload = () => {
-                img.onload = null
-                this.program.setChannel(channel, img)
-                this.start()
-            }
-        }
+        this.program.setChannel(channel, canvas)
     }
 
     start() {

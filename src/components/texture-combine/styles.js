@@ -44,8 +44,8 @@ export const app = css`
         }
 
         img {
-            max-width: calc(200px - 20px);
-            max-height: calc(200px - 20px);
+            max-width: 100%;
+            max-height: 100%;
         }
     }
 

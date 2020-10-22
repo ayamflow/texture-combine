@@ -37,8 +37,6 @@ export default class RGBAMaterial extends Program {
     setChannel(channel, image) {
         let texture = this.uniforms[channel].value
         texture.image = image
-        texture.needsUpdate = true
-        console.log('setChannel', channel, image, this.uniforms[channel]);
     }
 
     toggleAlpha(value) {
