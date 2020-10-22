@@ -6,6 +6,9 @@ texture-combine
 
 > :warning: WIP dead simple for now, more features (and styling) to come
 
+![texture-combine](https://i.imgur.com/sy1QhIN.jpg)
+
+
 ### Usage
 ```
 git clone https://github.com/ayamflow/texture-combine
