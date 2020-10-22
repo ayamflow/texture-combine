@@ -1,20 +1,18 @@
 
-:triangular_ruler: turfu-starter
+texture-combine
 ===
 
-### A project boilerplate for the web of the future. Le turfu.
+### A tool to combine different RGB/A channels into a single texture
 
-> :warning: Early release, still WIP (see todo)
+> :warning: WIP dead simple for now, more features (and styling) to come
 
-### Features
-- Fully es2015 (even gulp)
-- Uses browserify & babel for js
-- Uses stylus for css
-- Simple `index.html` interpolation using _.template & environment variables
+### Usage
+```
+git clone https://github.com/ayamflow/texture-combine
+cd texture-combine
+npm i
+npm start
+```
 
-### To do
-- Add [standardjs](standardjs.com)
-- Add svg task (style to attr, optimize, import)
-
-### License
-MIT.
+Then drag each image onto their respective square (RGB and optionally an Alpha image, which will use the red channel).
+Once done, right click on the result image and select "Save image".

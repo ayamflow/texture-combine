@@ -1,7 +1,7 @@
 {
     "name": "texture-combine",
-    "version": "1.0.0",
-    "description": "A tool to combine multipler greyscale images",
+    "version": "0.0.1",
+    "description": "A tool to combine different RGB/A channels into a single texture",
     "main": "index.js",
     "scripts": {
         "start": "webpack-dev-server --open --env.development",
