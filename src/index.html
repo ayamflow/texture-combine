@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+        <meta property="og:image" name="thumb" content="images/og-image.jpg"/>
+        <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<%= htmlWebpackPlugin.options.siteURL %>"/>
+        <meta property="og:site_name" content="<%= htmlWebpackPlugin.options.title %>"/>
+        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="<%= htmlWebpackPlugin.options.siteURL %>">
+        <meta name="twitter:creator" content="<%= htmlWebpackPlugin.options.twitter %>">
+        <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.title %>">
+        <meta name="twitter:description" content="<%= htmlWebpackPlugin.options.description %>">
+        <meta name="twitter:image:src" content="images/og-image.jpg">
+
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <link rel="canonical" href="<%= htmlWebpackPlugin.options.siteURL %>" />
+    </head>
+    <body>
+        <main></main>
+    </body>
+</html>
